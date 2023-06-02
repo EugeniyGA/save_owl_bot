@@ -9,15 +9,17 @@ def retry_send_message(func):
     async def wrapper(bot, *args, **kwargs):
         '''
         Ретрай отправки сообщений в канал
-        Используется пачка ботов, поскольку для отправки сообщений в канал есть ограничение на 20 сообщений в минуту
+        Используется пачка ботов, поскольку для отправки сообщений
+        в канал есть ограничение на 20 сообщений в минуту
         :param bot:
         :param args:
         :param kwargs:
         :return:
         '''
-        bots = [private_bot, moderator_bot_1, moderator_bot_2, moderator_bot_3, moderator_bot_4]
+        bots = [private_bot, moderator_bot_1, moderator_bot_2,
+                moderator_bot_3, moderator_bot_4]
         retry_number = 0
-        while retry_number != 3:
+        while retry_number != 5:
             try:
                 result = await func(bots[retry_number], *args, **kwargs)
                 return result
